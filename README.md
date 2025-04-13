@@ -55,7 +55,7 @@ pip install -r requirements.txt
 You'll need to create two configuration files before running the bot:
 
 ### 1. src/ldp-meta/config.json
-```js
+```json
 {
     "PREFIX": "! (Your Desired Prefix)", 
     "CHANNEL_ID": "[CHANNEL_ID_FOR_AUTODELETE]"
