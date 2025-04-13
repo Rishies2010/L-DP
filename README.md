@@ -55,17 +55,17 @@ pip install -r requirements.txt
 You'll need to create two configuration files before running the bot:
 
 ### 1. src/ldp-meta/config.json
-```json
+```js
 {
-    "PREFIX": "!",  // Your desired command prefix
-    "CHANNEL_ID": "YOUR_CHANNEL_ID"  // Channel ID for auto-delete functionality
+    "PREFIX": "! (Your Desired Prefix)", 
+    "CHANNEL_ID": "[CHANNEL_ID_FOR_AUTODELETE]"
 }
 ```
 
 ### 2. src/ldp-meta/bot.json
 ```json
 {
-    "BOT_TOKEN": "YOUR_BOT_TOKEN"  // Your Discord bot token from Discord Developer Portal
+    "BOT_TOKEN": "[YOUR_BOT_TOKEN]"
 }
 ```
 
