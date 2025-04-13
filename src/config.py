@@ -21,18 +21,25 @@ They describe the bot's behavior for different commands.
         try:
             # Open the json file
             with open(path) as f:
-                self.config = json.load(f)
-
+                try:
+                    self.config = json.load(f)
+                except json.decoder.JSONDecodeError as e:
+                    raise RuntimeError(f"Invalid JSON in {path}.\n{e}")
 
                 try:
                     # Get the bot token 
                     self.TOKEN = self.config["BOT_TOKEN"]
                 except:
-                    print("Error: Expected BOT_TOKEN to be specified in ldp-meta/bot.json")
+                    preferred_syntax = r"""
+{
+    "BOT_TOKEN": "[YOUR_BOT_TOKEN]"
+}
+"""
+                    raise RuntimeError(f"Expected BOT_TOKEN to be specified in {path}.\nThe file should look like this:\n{preferred_syntax}")
+            
 
         except FileNotFoundError:
-            print("Please ensure both ldp-meta/bot.json and ldp-meta/config.json exist!")
-            exit()
+            raise RuntimeError(f"Please ensure {path} exists!")
 
 
 
@@ -47,7 +54,10 @@ They describe the bot's behavior for different starting simulations.
         try:
             # Open the json file
             with open(path) as f:
-                self.config = json.load(f)
+                try:
+                    self.config = json.load(f)
+                except json.decoder.JSONDecodeError as e:
+                    raise RuntimeError(f"Invalid JSON in {path}.\n{e}")
 
 
                 try:
@@ -55,10 +65,14 @@ They describe the bot's behavior for different starting simulations.
                     self.PREFIX = self.config["PREFIX"]
                     self.CHANNEL_ID = self.config["CHANNEL_ID"]
                 except KeyError:
-                    print("Error: Expected PREFIX and CHANNEL_ID to be specified in ldp-meta/config.json")
+                    preferred_syntax = r"""
+{
+    "PREFIX": "! (Your Desired Prefix)", 
+    "CHANNEL_ID": "[CHANNEL_ID_FOR_AUTODELETE]"
+}"""
+                    raise RuntimeError(f"Expected PREFIX and CHANNEL_ID to be specified in {path}\nThe file should look like this:\n{preferred_syntax}")
         except FileNotFoundError:
-            print("Please ensure both ldp-meta/bot.json and ldp-meta/config.json exist!")
-            exit()
+            raise RuntimeError(f"Please ensure {path} exists!")
 
 
 
