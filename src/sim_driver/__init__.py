@@ -1,0 +1,1 @@
+from .input_mod import Input, get_input
