@@ -35,13 +35,6 @@ Examples:
   python ldp.py test --exclude_tests='test_input'
 """
 
-        # Stores the cogs to be used for the bot
-        self.cogs_list = [
-            cogs.Basic,
-            cogs.Sim
-        ] 
-        # WARNING: Dont forget to add more
-
         # __init__ ends here
 
     def help(self):
