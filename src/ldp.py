@@ -1,25 +1,51 @@
 import fire
+from pathlib import Path
 
-# We must be able to use the cli like this:
-# ```bash
-# python ldp.py <command>
-# ```
+class Commands:
+    """CLI command handler for L-DP bot management.
+    Call: python ldp.py help for more information."""
 
-# Commands are:
-# run 
-# test
-# help
+    def __init__(self):
+        self.help_text = """
+L-DP CLI Tool
+============
 
-# `run` Commands arguments:
-# --exclude_cogs=['<cog_name>', ...]
-# --env='/path/to/.env' (defaults to root/.env)
-# --config='/path/to/config.json/'
+Commands:
+  run     Start the Discord bot
+  test    Run test suite
 
-# `test` Command arguments:
-# --exclude_tests=['<test_name>' , ...]
+Usage:
+  python ldp.py <command> [options]
 
-class Commands(object):
-    pass
+Available Commands:
+  run     Start the Discord bot
+    Options:
+      --exclude_cogs=['<cog_name>', ...]  List of cog names to exclude
+      --configs='path/to/configs/folder' Folder which contains all the configs
+                > Configs are located in the same directory level as `src/` by default or one directories above
+
+  test    Run the test suite
+    Options:
+      --exclude_tests=['<test_name>', ...]  List of tests to exclude
+
+Examples:
+  python ldp.py run --exclude_cogs=['basic','sim'] 
+  python ldp.py test --exclude_tests=['test_input']
+"""
+
+    def help(self):
+        """Show a help message."""
+        print(self.help_text)
+        return 0
+
+
+    def run(self, exclude_cogs: list = [], configs: Path = Path('../configs/')):
+        """Starts the Bot."""
+        pass
+    
+    def test(self, exclude_tests: list = []):
+        """Runs the test suite."""
+        pass
 
 def main():
     fire.Fire(Commands)
