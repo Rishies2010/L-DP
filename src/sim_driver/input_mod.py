@@ -87,6 +87,8 @@ After the message is sent it is deleted.
     # Listens for messages and stores them in the buffer
     @commands.Cog.listener()
     async def on_message(self, message):
+        if message.author.id == self.user.id:
+            return
         if str(message.channel.id) != str(self.target_channel_id):
             print(f'Invalid Channel: {message.channel.id}, Expected: {self.target_channel_id}')
             return
