@@ -90,13 +90,6 @@ After the message is sent it is deleted.
         if str(message.channel.id) != str(self.target_channel_id):
             print(f'Invalid Channel: {message.channel.id}, Expected: {self.target_channel_id}')
             return
-        
-
-        # Autodelete feature
-        try:
-            await message.delete()
-        except discord.Forbidden:
-            print(f'Could not delete message: {message.id}... Invalid Permissions!')
                 
         input_list.write(message.content)
 
